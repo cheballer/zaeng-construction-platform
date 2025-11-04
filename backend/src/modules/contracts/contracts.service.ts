@@ -52,9 +52,9 @@ export class ContractsService {
   }
 
   // Clause Library Methods
-  async findAllClauses(contractType: string): Promise<Clause[]> {
+  async findAllClauses(contractType: string | ContractType): Promise<Clause[]> {
     return this.clausesRepository.find({
-      where: { contractType },
+      where: { contractType: contractType as ContractType },
       order: { clauseNumber: 'ASC' },
     });
   }

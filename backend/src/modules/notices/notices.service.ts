@@ -8,6 +8,7 @@ import { CreateClaimDto } from './dto/create-claim.dto';
 import { AiClauseService } from '../ai/ai-clause.service';
 import { RulesService } from '../rules/rules.service';
 import { ProjectsService } from '../projects/projects.service';
+import { NotificationsService } from '../notifications/notifications.service';
 import { NoticeStatus } from '../../common/enums/contract-type.enum';
 
 @Injectable()
@@ -137,8 +138,13 @@ export class NoticesService {
     return notice;
   }
 
-  async update(id: string, updateData: Partial<Notice>): Promise<Notice> {
-    await this.noticesRepository.update(id, updateData);
+  async update(id: string, updateData: Partial<CreateNoticeDto>): Promise<Notice> {
+    // Convert date strings to Date objects if present
+    const processedData: any = { ...updateData };
+    if (updateData.eventDate && typeof updateData.eventDate === 'string') {
+      processedData.eventDate = new Date(updateData.eventDate);
+    }
+    await this.noticesRepository.update(id, processedData);
     return this.findOne(id);
   }
 

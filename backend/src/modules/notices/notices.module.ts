@@ -7,6 +7,7 @@ import { Claim } from './entities/claim.entity';
 import { AiModule } from '../ai/ai.module';
 import { RulesModule } from '../rules/rules.module';
 import { ProjectsModule } from '../projects/projects.module';
+import { NotificationsModule } from '../notifications/notifications.module';
 
 @Module({
   imports: [

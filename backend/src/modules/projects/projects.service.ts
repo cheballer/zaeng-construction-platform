@@ -38,9 +38,17 @@ export class ProjectsService {
     return project;
   }
 
-  async update(id: string, updateData: Partial<Project>, tenantId: string): Promise<Project> {
+  async update(id: string, updateData: Partial<CreateProjectDto>, tenantId: string): Promise<Project> {
     const project = await this.findOne(id, tenantId);
-    Object.assign(project, updateData);
+    // Convert date strings to Date objects if present
+    const processedData: any = { ...updateData };
+    if (updateData.startDate && typeof updateData.startDate === 'string') {
+      processedData.startDate = new Date(updateData.startDate);
+    }
+    if (updateData.completionDate && typeof updateData.completionDate === 'string') {
+      processedData.completionDate = new Date(updateData.completionDate);
+    }
+    Object.assign(project, processedData);
     return this.projectsRepository.save(project);
   }
 

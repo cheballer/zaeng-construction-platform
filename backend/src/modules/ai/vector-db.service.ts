@@ -18,7 +18,10 @@ export class VectorDbService implements OnModuleInit {
     if (this.provider === 'pinecone' && this.openaiApiKey) {
       const apiKey = this.configService.get<string>('PINECONE_API_KEY');
       if (apiKey) {
-        this.pinecone = new Pinecone({ apiKey });
+        // Pinecone v1+ initialization - apiKey is sufficient
+        this.pinecone = new Pinecone({ 
+          apiKey: apiKey,
+        } as any); // Type assertion for Pinecone v1+ compatibility
         const indexName = this.configService.get<string>('PINECONE_INDEX') || 'zaeng-clauses';
         this.index = this.pinecone.index(indexName);
       }
