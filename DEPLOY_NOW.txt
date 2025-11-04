@@ -1,0 +1,37 @@
+╔══════════════════════════════════════════════════════════════╗
+║   🚀 DEPLOY TO VERCEL - COPY & PASTE THESE COMMANDS         ║
+╚══════════════════════════════════════════════════════════════╝
+
+Step 1: Navigate to frontend
+────────────────────────────
+cd frontend
+
+Step 2: Login to Vercel (opens browser)
+────────────────────────────────────────
+vercel login
+
+Step 3: Deploy (follow prompts)
+────────────────────────────────
+vercel
+
+   Answer prompts:
+   ✓ Set up and deploy? → Yes
+   ✓ Link to existing? → No
+   ✓ Project name? → zaeng-construction-platform
+   ✓ Directory? → ./
+
+Step 4: Set API URL (optional for now)
+───────────────────────────────────────
+vercel env add VITE_API_URL
+   Enter: http://localhost:3000/api (or your backend URL)
+
+Step 5: Deploy to Production
+─────────────────────────────
+vercel --prod
+
+Done! Your app is live at the URL Vercel provides.
+
+═══════════════════════════════════════════════════════════════
+
+For detailed instructions, see: frontend/DEPLOY_INSTRUCTIONS.md
+
