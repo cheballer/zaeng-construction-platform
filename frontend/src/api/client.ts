@@ -3,7 +3,7 @@ import { useAuthStore } from '../store/authStore';
 
 // Use environment variable or default to localhost for development
 const API_URL = import.meta.env.VITE_API_URL || 
-  (import.meta.env.PROD 
+  (import.meta.env.PROD
     ? 'https://your-backend-url.com/api' 
     : 'http://localhost:3000/api');
 
