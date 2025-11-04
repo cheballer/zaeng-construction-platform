@@ -1,0 +1,48 @@
+╔══════════════════════════════════════════════════════════════╗
+║   📤 PUSH TO GITHUB - COPY & PASTE THESE COMMANDS           ║
+╚══════════════════════════════════════════════════════════════╝
+
+✅ Your code is already committed and ready!
+
+STEP 1: Create GitHub Repository
+──────────────────────────────────
+1. Go to: https://github.com/new
+2. Repository name: zaeng-construction-platform
+3. Description: AI-powered construction contract management platform
+4. Choose Public or Private
+5. ⚠️ DO NOT check "Add README" or "Add .gitignore" (we already have these)
+6. Click "Create repository"
+
+STEP 2: Push Your Code
+───────────────────────
+Copy and paste these commands (replace YOUR_USERNAME with your GitHub username):
+
+cd /Users/fatehcheballah/Documents/AppConstruction
+git remote add origin https://github.com/YOUR_USERNAME/zaeng-construction-platform.git
+git push -u origin main
+
+Example:
+  git remote add origin https://github.com/johndoe/zaeng-construction-platform.git
+  git push -u origin main
+
+STEP 3: Deploy to Vercel
+─────────────────────────
+After pushing to GitHub:
+
+1. Go to: https://vercel.com
+2. Click "Add New Project"
+3. Import Git Repository → Select "zaeng-construction-platform"
+4. Configure:
+   • Root Directory: frontend
+   • Framework: Vite (auto-detected)
+5. Add Environment Variable:
+   • Key: VITE_API_URL
+   • Value: http://localhost:3000/api (or your backend URL)
+6. Click "Deploy"
+
+✅ Vercel will automatically deploy on every git push!
+
+═══════════════════════════════════════════════════════════════
+
+For detailed instructions, see: PUSH_TO_GITHUB.md
+
