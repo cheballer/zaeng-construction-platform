@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -119,12 +119,12 @@ export default function Register() {
           </div>
 
           <div className="text-center">
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="text-sm text-primary-600 hover:text-primary-500"
             >
               Already have an account? Sign in
-            </a>
+            </Link>
           </div>
         </form>
       </div>
