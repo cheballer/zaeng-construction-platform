@@ -44,8 +44,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  const port = configService.get('PORT') || 3000;
-  await app.listen(port);
+  // Railway and other platforms set PORT dynamically - use process.env.PORT first
+  const port = process.env.PORT || configService.get('PORT') || 3000;
+  await app.listen(port, '0.0.0.0'); // Listen on all interfaces for Railway
 
   console.log(`🚀 Za-Eng Platform API running on: http://localhost:${port}/api`);
   console.log(`📚 API Documentation: http://localhost:${port}/api/docs`);
