@@ -13,7 +13,10 @@ export class DatabaseConfig implements TypeOrmOptionsFactory {
       url: this.configService.get<string>('DATABASE_URL'),
       entities: [join(__dirname, '../**/*.entity{.ts,.js}')],
       migrations: [join(__dirname, '../migrations/*{.ts,.js}')],
-      synchronize: this.configService.get<string>('NODE_ENV') === 'development',
+      // Auto-create tables in development or if ENABLE_SYNC is set (for initial Railway setup)
+      synchronize: 
+        this.configService.get<string>('NODE_ENV') === 'development' ||
+        this.configService.get<string>('ENABLE_SYNC') === 'true',
       logging: this.configService.get<string>('NODE_ENV') === 'development',
       ssl: this.configService.get<string>('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,
       extra: {
