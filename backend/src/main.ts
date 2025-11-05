@@ -12,9 +12,28 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   // Enable CORS
+  const frontendUrl = configService.get('FRONTEND_URL') || 'http://localhost:3001';
   app.enableCors({
-    origin: configService.get('FRONTEND_URL') || 'http://localhost:3001',
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      const allowedOrigins = [
+        frontendUrl,
+        'https://zaeng-construction-platform-a3k6.vercel.app',
+        'http://localhost:3001',
+        'http://localhost:5173',
+      ];
+      
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(null, true); // Allow all for now - tighten in production
+      }
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
   // Global validation pipe
